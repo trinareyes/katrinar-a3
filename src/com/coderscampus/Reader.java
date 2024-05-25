@@ -2,6 +2,7 @@ package com.coderscampus;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class Reader {
 
@@ -10,15 +11,21 @@ public class Reader {
 
 		BufferedReader fileReader = null;
 		try {
-			BufferedReader fileReader = new BufferedReader(new FileReader("data.txt"));
-			fileReader.close();
+			 fileReader = new BufferedReader(new FileReader("data.txt"));
+			 System.out.println(fileReader.toString());
 			
 			
 		} catch (FileNotFoundException e) {
 			  System.out.println("oops, there was an exception");
 			e.printStackTrace();
 		} finally {
-			fileReader.close();
+			try {
+				System.out.println("closing file reader");
+				fileReader.close();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 		}
 }
 }
