@@ -36,7 +36,7 @@ public class UserService {
 		        user.setPassword(stringInput[1]);
 		        user.setName(stringInput[2]);
 		        return user;
-		    }		
+		    }	 	       
 		
 		
 			

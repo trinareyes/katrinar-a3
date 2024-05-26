@@ -1,18 +1,32 @@
 package com.coderscampus;
 
+import java.util.Scanner;
+
 public class UserApplication {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	UserService userService = new UserService();
+		Scanner scanner = new Scanner(System.in);
+		UserService userService = new UserService();
+		
+		
+		System.out.println("Enter your username");
+		String username = scanner.nextLine();
+		
+		
+		System.out.println("Enter your password:");
+		String password = scanner.nextLine();
+		
+		
 	
-	String[] stringInput = new String[3];
-	stringInput[0] = "";
-	stringInput[1] = "";
-	stringInput[2] = "";
-	
-	User user = userService.createUser(stringInput);
-	
-	System.out.println(user);
+		
+		String[] stringInput = new String[2];
+		stringInput[0] = username;
+		stringInput[1] = password;
+		
+		User user = userService.createUser(stringInput);
+		System.out.println("User created: " + user);
+		
+		scanner.close();
+
 }
 }
