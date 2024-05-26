@@ -1,20 +1,36 @@
 package com.coderscampus;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class UserService {
 
-	public User createUser (String username, String password, String name){
-		
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setName(name);
-		return user;
-		
-		
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		BufferedReader fileReader = null;
+		try {
+			 fileReader = new BufferedReader(new FileReader("data.txt"));
+			 System.out.println(fileReader.toString());
+			
+			
+		} catch (FileNotFoundException e) {
+			  System.out.println("oops, there was an exception");
+			e.printStackTrace();
+		} finally {
+			try {
+				System.out.println("closing file reader");
+				fileReader.close();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		}
 		
 		
+		
+		
+					
 	}
-
 }
