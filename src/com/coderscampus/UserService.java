@@ -1,43 +1,65 @@
 package com.coderscampus;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+
+import java.util.Scanner;
 import java.io.FileReader;
 import java.io.IOException;
+
 
 public class UserService {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		BufferedReader fileReader = null;
-		try {
-			 fileReader = new BufferedReader(new FileReader("data.txt"));
-			 System.out.println(fileReader.toString());
+	     User[] users = new User[4]; 
+	        int index = 0;
+	        
+		
+	        try (BufferedReader fileReader = new BufferedReader(new FileReader("data.txt"))) {
+	           
+	        	
+	        	 String line;
+	             while ((line = fileReader.readLine()) != null) {
+	            	 
+	            	 
+	                 Scanner scanner = new Scanner(line);
+	                 if (scanner.hasNext()) {
+	                     String username = scanner.next();
+	                     if (scanner.hasNext()) {
+	                         String password = scanner.next();
+	                         if (scanner.hasNext()) {
+	                             String name = scanner.next();
+	                             User user = new User(username, password, name);
+	                             users[index] = user;
+	                             index++;
+	                         }
+	                     }
+	                 }
+	                 scanner.close();
+	            }
+	        } catch (IOException e) {
+	            System.out.println("Error reading file: " + e.getMessage());
+	        }
+		
+		try (Scanner scanner = new Scanner(System.in)) {
+			System.out.println("Enter your username: ");
+			String enteredUsername = scanner.nextLine();
+			System.out.println("Enter your password: ");
+			String enteredPassword = scanner.nextLine();
 			
 			
-		} catch (FileNotFoundException e) {
-			  System.out.println("oops, there was an exception");
-			e.printStackTrace();
-		} finally {
-			try {
-				System.out.println("closing file reader");
-				fileReader.close();
-			} catch (IOException e) {
-				
-				e.printStackTrace();
-			}
+			 boolean isValidUser = false;
+			 for (User user : users) {
+	                if (user != null && user.getUsername().equals(enteredUsername) && user.getPassword().equals(enteredPassword)) {
+	                    System.out.println("Welcome " + user.getName());
+	                    isValidUser = true;
+	                    break;
+	                }
+			        }
+			 
+			  if (!isValidUser) {
+	                System.out.println("Invalid login, please try again.");
+	            }
 		}
-		
 	}
+}
 
-		   public User createUser(String[] stringInput) {
-		        User user = new User();
-		        user.setUsername(stringInput[0]);
-		        user.setPassword(stringInput[1]);
-		        user.setName(stringInput[2]);
-		        return user;
-		    }	 	       
-		
-		
 			
-	}
