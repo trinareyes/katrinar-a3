@@ -29,7 +29,7 @@ public class UserService {
 
     public User validateUser(User[] users, String enteredUsername, String enteredPassword) {
         for (User user : users) {
-            if (user != null && user.getUsername().equals(enteredUsername) && user.getPassword().equals(enteredPassword)) {
+            if (user != null && user.getUsername().equalsIgnoreCase(enteredUsername) && user.getPassword().equals(enteredPassword)) {
                 return user;
             }
         }
